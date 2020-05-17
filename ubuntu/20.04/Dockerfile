@@ -27,6 +27,13 @@ RUN buildDeps='make build-essential g++ gcc python3.8' && softDeps="tmux git zip
  && git reset --hard
  
 VOLUME /workspace
+
+RUN chown root:root /cloud9
+RUN chmod 777 /cloud9
+
+RUN chown root:root /workspace
+RUN chmod 777 /workspace
+
 EXPOSE 8181 
 ENTRYPOINT ["forever", "/cloud9/server.js", "-w", "/workspace", "--listen", "0.0.0.0"]
 
